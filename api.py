@@ -109,7 +109,7 @@ def query(body: QueryRequest):
 
     if not results:
         def no_results():
-            yield f"data: {json.dumps({'type': 'sources', 'sources': []})}\n\n"
+            yield f"data: {json.dumps({'type': 'sources', 'sources': [], 'route': {'mode': route.mode, 'reason': route.reason}})}\n\n"
             yield f"data: {json.dumps({'type': 'token', 'content': 'No results found in the knowledge base.'})}\n\n"
             yield f"data: {json.dumps({'type': 'done'})}\n\n"
 
@@ -133,8 +133,8 @@ def query(body: QueryRequest):
     ]
 
     def stream():
-        # Send sources first
-        yield f"data: {json.dumps({'type': 'sources', 'sources': sources})}\n\n"
+        # Send sources + route metadata first
+        yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'route': {'mode': route.mode, 'reason': route.reason}})}\n\n"
 
         # Stream LLM response via provider abstraction
         try:

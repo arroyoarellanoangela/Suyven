@@ -258,6 +258,8 @@ Las siguientes capacidades **no entran en ninguna fase de V2** sin una revisión
 | Pre-V2.5 Generation polish | ✅ Completado | SYSTEM_PROMPT + upgrade 8B→14B |
 | LLM Provider abstraction | ✅ Completado | `rag/llm.py` — Ollama + OpenAI-compatible APIs |
 | V2.1 Orchestration | ✅ Completado | `model_registry` + `index_registry` + `orchestrator` |
+| V2.1 Validation | ✅ Completado | 12/12 routing, 48/48 tests, route observability in frontend |
+| LLM switch: Groq/llama-3.3-70b | ✅ Validado | 0 marketing words, correct category separation, avg 3.17s |
 | V2.2 Second Index | Pendiente | V2.1 + trigger de corpus |
 | V2.3 Second Embedding Model | Pendiente | V2.2 + plateau de calidad documentado |
 | V2.4 LLM Routing | Pendiente | V2.1 ✅ + dos casos de uso reales |

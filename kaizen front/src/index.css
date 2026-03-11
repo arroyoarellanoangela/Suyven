@@ -615,7 +615,23 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.3rem;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
+.route-badge {
+  font-size: 0.56rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: 'Space Grotesk', monospace;
+}
+.route-badge.mode-answer  { background: #e8f4f0; color: var(--accent-green); }
+.route-badge.mode-summary { background: #fef4e0; color: var(--accent-amber); }
+.route-badge.mode-code    { background: #f0e8f4; color: #6b3fa0; }
 
 .source-item {
   border: none;

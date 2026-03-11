@@ -56,7 +56,7 @@ function App() {
 
     // Placeholder bot message that we'll stream into
     const botId = Date.now() + 1;
-    setMessages((prev) => [...prev, { id: botId, role: 'bot', content: '', sources: [] }]);
+    setMessages((prev) => [...prev, { id: botId, role: 'bot', content: '', sources: [], route: null }]);
 
     try {
       const res = await fetch(`${API}/query`, {
@@ -83,7 +83,7 @@ function App() {
 
           if (data.type === 'sources') {
             setMessages((prev) =>
-              prev.map((m) => (m.id === botId ? { ...m, sources: data.sources } : m))
+              prev.map((m) => (m.id === botId ? { ...m, sources: data.sources, route: data.route || null } : m))
             );
           } else if (data.type === 'token') {
             setMessages((prev) =>
@@ -293,6 +293,11 @@ function App() {
                   {msg.sources && msg.sources.length > 0 && (
                     <div className="sources-list">
                       <div className="sources-header">
+                        {msg.route && (
+                          <span className={`route-badge mode-${msg.route.mode}`}>
+                            {msg.route.mode}
+                          </span>
+                        )}
                         {msg.sources.length} source{msg.sources.length !== 1 ? 's' : ''} used
                       </div>
                       {msg.sources.map((src, i) => (

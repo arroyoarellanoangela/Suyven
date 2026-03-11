@@ -91,7 +91,7 @@ def plan(
     )
 
     logger.info(
-        '[orchestrator] query="%s" → indexes=%s embed=%s reranker=%s llm=%s mode=%s reason="%s"',
+        '[orchestrator] query="%s" -> indexes=%s embed=%s reranker=%s llm=%s mode=%s reason="%s"',
         query[:80],
         route.indexes,
         route.embed_model,
