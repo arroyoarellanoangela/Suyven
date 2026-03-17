@@ -4,7 +4,7 @@ import math
 
 import pytest
 
-from rag.bench_metrics import (
+from suyven_rag.rag.bench_metrics import (
     binary_relevance,
     contamination_check,
     faithfulness_embedding,

@@ -32,10 +32,10 @@ sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 import torch
 from sentence_transformers import CrossEncoder
 
-from rag.config import CHUNK_OVERLAP, CHUNK_SIZE, EMBED_MODEL, KNOWLEDGE_DIR
-from rag.chunker import chunk_text
-from rag.loader import iter_files, read_file
-from rag.store import get_collection, get_embed_model
+from suyven_rag.rag.config import CHUNK_OVERLAP, CHUNK_SIZE, EMBED_MODEL, KNOWLEDGE_DIR
+from suyven_rag.rag.chunker import chunk_text
+from suyven_rag.rag.loader import iter_files, read_file
+from suyven_rag.rag.store import get_collection, get_embed_model
 
 # ---------------------------------------------------------------------------
 # Config

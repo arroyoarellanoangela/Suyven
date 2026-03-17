@@ -13,12 +13,12 @@ from concurrent.futures import ThreadPoolExecutor
 
 from tqdm import tqdm
 
-from rag.config import KNOWLEDGE_DIR, WORKERS
-from rag.index_registry import get_index, reset_index
-from rag.loader import iter_files
-from rag.model_registry import get_embed_model
-from rag.pipeline import read_and_chunk
-from rag.store import add_chunks, ensure_ollama
+from suyven_rag.rag.config import KNOWLEDGE_DIR, WORKERS
+from suyven_rag.rag.index_registry import get_index, reset_index
+from suyven_rag.rag.loader import iter_files
+from suyven_rag.rag.model_registry import get_embed_model
+from suyven_rag.rag.pipeline import read_and_chunk
+from suyven_rag.rag.store import add_chunks, ensure_ollama
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s  %(message)s")
 logger = logging.getLogger(__name__)

@@ -37,7 +37,7 @@ GROQ_PAIRS = BASE_DIR / "data" / "finetune" / "pairs.jsonl"
 
 def load_corpus() -> dict[str, list[dict]]:
     """Load all chunks from ChromaDB, grouped by source."""
-    from rag.index_registry import get_index
+    from suyven_rag.rag.index_registry import get_index
 
     col = get_index()
     total = col.count()
@@ -249,7 +249,7 @@ def filter_with_reranker(
     knows what a genuine match looks like. Pairs that score below min_score
     are likely noise.
     """
-    from rag.model_registry import get_reranker
+    from suyven_rag.rag.model_registry import get_reranker
 
     reranker = get_reranker()
     logger.info("Filtering %d pairs with cross-encoder (min_score=%.2f)...", len(pairs), min_score)

@@ -18,7 +18,7 @@ from pathlib import Path
 
 import requests
 
-from finetune.config import TrainConfig
+from suyven_rag.finetune.config import TrainConfig
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s  %(message)s")
 logger = logging.getLogger(__name__)
@@ -32,7 +32,7 @@ Passage:
 
 def sample_chunks(n: int) -> list[dict]:
     """Sample n chunks from ChromaDB, stratified by category."""
-    from rag.index_registry import get_index
+    from suyven_rag.rag.index_registry import get_index
 
     col = get_index()
     total = col.count()
@@ -117,7 +117,7 @@ def generate_questions(
 
 def run(config: TrainConfig) -> Path:
     """Generate training pairs and save to JSONL."""
-    from rag.config import LLM_API_KEY, LLM_API_URL, LLM_MODEL
+    from suyven_rag.rag.config import LLM_API_KEY, LLM_API_URL, LLM_MODEL
 
     output = config.train_data_path
     output.parent.mkdir(parents=True, exist_ok=True)

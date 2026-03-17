@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from rag.agents import (
+from suyven_rag.rag.agents import (
     AgentContext,
     EvaluatorAgent,
     GeneratorAgent,
@@ -19,7 +19,7 @@ from rag.agents import (
     run_agent_pipeline,
     _merge_and_dedup,
 )
-from rag.orchestrator import RoutePlan
+from suyven_rag.rag.orchestrator import RoutePlan
 
 
 # -----------------------------------------------------------------------

@@ -11,9 +11,9 @@ Usage:
 import logging
 import sys
 
-from rag.index_registry import get_index
-from rag.orchestrator import execute_search, format_context, plan
-from rag.store import ensure_ollama
+from suyven_rag.rag.index_registry import get_index
+from suyven_rag.rag.orchestrator import execute_search, format_context, plan
+from suyven_rag.rag.store import ensure_ollama
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s  %(message)s")
 

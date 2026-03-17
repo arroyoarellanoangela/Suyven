@@ -35,7 +35,7 @@ DEFAULT_OUTPUT = BASE_DIR / "data" / "finetune" / "pairs_selfsup.jsonl"
 
 def load_corpus() -> dict[str, list[dict]]:
     """Load all chunks from ChromaDB, grouped by source."""
-    from rag.index_registry import get_index
+    from suyven_rag.rag.index_registry import get_index
 
     col = get_index()
     total = col.count()
@@ -182,7 +182,7 @@ def mine_hard_negatives(
     from OTHER sources. These become hard negatives that teach the model
     to distinguish between superficially similar but topically different content.
     """
-    from rag.store import embed_batch
+    from suyven_rag.rag.store import embed_batch
 
     logger.info("Mining hard negatives for %d pairs...", len(pairs))
 

@@ -60,7 +60,7 @@ def extract_entities(text: str) -> list[str]:
 
 def load_corpus() -> list[dict]:
     """Load all chunks from ChromaDB."""
-    from rag.index_registry import get_index
+    from suyven_rag.rag.index_registry import get_index
 
     col = get_index()
     total = col.count()
@@ -184,7 +184,7 @@ def filter_with_reranker(
     batch_size: int = 64,
 ) -> list[dict]:
     """Score and filter pairs with cross-encoder reranker."""
-    from rag.model_registry import get_reranker
+    from suyven_rag.rag.model_registry import get_reranker
 
     reranker = get_reranker()
     logger.info("Filtering %d pairs with reranker (min_score=%.2f)...", len(pairs), min_score)

@@ -1,6 +1,6 @@
 """Tests for rag.config — verify all config values are loaded and typed correctly."""
 
-from rag.config import (
+from suyven_rag.rag.config import (
     ADD_BATCH_SIZE,
     CHUNK_OVERLAP,
     CHUNK_SIZE,
@@ -73,7 +73,7 @@ class TestSecretHelper:
     def test_falls_back_to_env(self):
         """When no Docker secret file exists, reads from env var."""
         import os
-        from rag.config import _secret
+        from suyven_rag.rag.config import _secret
         os.environ["_TEST_SECRET_XYZ"] = "env-value"
         try:
             assert _secret("_TEST_SECRET_XYZ") == "env-value"
@@ -81,13 +81,13 @@ class TestSecretHelper:
             del os.environ["_TEST_SECRET_XYZ"]
 
     def test_returns_default(self):
-        from rag.config import _secret
+        from suyven_rag.rag.config import _secret
         assert _secret("_NONEXISTENT_SECRET_ABC", "fallback") == "fallback"
 
     def test_reads_from_file(self, tmp_path):
         """When a secret file exists, reads from it."""
         from unittest.mock import patch
-        from rag.config import _secret
+        from suyven_rag.rag.config import _secret
 
         # Create a fake secret file
         secret_file = tmp_path / "TEST_KEY"

@@ -3,15 +3,15 @@
 import streamlit as st
 from concurrent.futures import ThreadPoolExecutor
 
-from rag.config import KNOWLEDGE_DIR, LLM_MODEL, LLM_PROVIDER, WORKERS
-from rag.index_registry import get_index, reset_index
-from rag.llm import stream_chat
-from rag.loader import iter_files
-from rag.model_registry import get_embed_model
-from rag.monitoring import gpu_metrics
-from rag.orchestrator import execute_search, format_context, plan
-from rag.pipeline import read_and_chunk
-from rag.store import add_chunks, ensure_ollama
+from suyven_rag.rag.config import KNOWLEDGE_DIR, LLM_MODEL, LLM_PROVIDER, WORKERS
+from suyven_rag.rag.index_registry import get_index, reset_index
+from suyven_rag.rag.llm import stream_chat
+from suyven_rag.rag.loader import iter_files
+from suyven_rag.rag.model_registry import get_embed_model
+from suyven_rag.rag.monitoring import gpu_metrics
+from suyven_rag.rag.orchestrator import execute_search, format_context, plan
+from suyven_rag.rag.pipeline import read_and_chunk
+from suyven_rag.rag.store import add_chunks, ensure_ollama
 
 # ---------------------------------------------------------------------------
 # Page config

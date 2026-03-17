@@ -15,7 +15,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from finetune.config import TrainConfig
+from suyven_rag.finetune.config import TrainConfig
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s  %(message)s")
 logger = logging.getLogger(__name__)
@@ -60,7 +60,7 @@ def run_compare(report_a: Path, report_b: Path) -> None:
 
 def swap_embed_model(checkpoint_path: Path) -> None:
     """Register the fine-tuned model in the model registry at runtime."""
-    from rag.model_registry import ModelInfo, _embed_models, _registry
+    from suyven_rag.rag.model_registry import ModelInfo, _embed_models, _registry
 
     from sentence_transformers import SentenceTransformer
     import torch
@@ -89,7 +89,7 @@ def swap_embed_model(checkpoint_path: Path) -> None:
 
 def restore_embed_model() -> None:
     """Restore the original embedding model."""
-    from rag.model_registry import _embed_models
+    from suyven_rag.rag.model_registry import _embed_models
 
     # Remove cached finetuned model, let registry reload default on next access
     _embed_models.pop("default_embed", None)

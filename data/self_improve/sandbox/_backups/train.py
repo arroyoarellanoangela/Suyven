@@ -22,9 +22,9 @@ import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
-from finetune.config import TrainConfig
-from finetune.dataset import ContrastivePairsDataset, TripletDataset, train_eval_split
-from finetune.lora import (
+from suyven_rag.finetune.config import TrainConfig
+from suyven_rag.finetune.dataset import ContrastivePairsDataset, TripletDataset, train_eval_split
+from suyven_rag.finetune.lora import (
     count_params,
     get_lora_params,
     inject_lora,
@@ -155,7 +155,7 @@ class CosineWithWarmup(torch.optim.lr_scheduler.LambdaLR):
 def gpu_snapshot() -> dict | None:
     """Quick GPU metrics snapshot for training log."""
     try:
-        from rag.monitoring import gpu_metrics
+        from suyven_rag.rag.monitoring import gpu_metrics
         return gpu_metrics()
     except Exception:
         return None

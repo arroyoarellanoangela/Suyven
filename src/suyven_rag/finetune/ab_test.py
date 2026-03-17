@@ -87,7 +87,7 @@ def search_with_model(model, queries, collection, top_k=5):
 
 def score_with_reranker(queries, docs_list):
     """Score query-doc pairs with cross-encoder reranker."""
-    from rag.model_registry import get_reranker
+    from suyven_rag.rag.model_registry import get_reranker
 
     reranker = get_reranker()
     all_scores = []
@@ -173,7 +173,7 @@ def compare(base_results, ft_results, base_scores, ft_scores):
 
 
 def main():
-    from rag.index_registry import get_index
+    from suyven_rag.rag.index_registry import get_index
 
     base_model, ft_model = load_models()
     collection = get_index()

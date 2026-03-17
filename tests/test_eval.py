@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 import pytest
 
-from rag.eval import (
+from suyven_rag.rag.eval import (
     CONTAMINATION_CATS,
     LATENCY_SPIKE_S,
     RERANKER_FLOOR,

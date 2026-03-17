@@ -13,8 +13,8 @@ from torch.optim.lr_scheduler import _LRScheduler
 from torch.utils.data import DataLoader
 
 # Assuming these are available in the finetune package
-from finetune.config import TrainConfig
-from finetune.lora import save_lora_weights
+from suyven_rag.finetune.config import TrainConfig
+from suyven_rag.finetune.lora import save_lora_weights
 
 logger = logging.getLogger(__name__)
 

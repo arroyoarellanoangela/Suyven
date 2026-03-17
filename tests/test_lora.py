@@ -8,7 +8,7 @@ import pytest
 import torch
 import torch.nn as nn
 
-from finetune.lora import (
+from suyven_rag.finetune.lora import (
     LoRALinear,
     count_params,
     get_lora_params,
@@ -305,14 +305,14 @@ class TestSaveLoadLoRA:
 class TestMNRLLoss:
     def test_perfect_alignment_low_loss(self):
         """Identical query and positive embeddings should give low loss."""
-        from finetune.train import compute_mnrl_loss
+        from suyven_rag.finetune.train import compute_mnrl_loss
 
         embeds = torch.eye(8)
         loss = compute_mnrl_loss(embeds, embeds, temperature=0.05)
         assert loss.item() < 0.1  # near zero for perfect alignment
 
     def test_random_embeddings_higher_loss(self):
-        from finetune.train import compute_mnrl_loss
+        from suyven_rag.finetune.train import compute_mnrl_loss
 
         torch.manual_seed(42)
         q = torch.randn(8, 64)
@@ -321,7 +321,7 @@ class TestMNRLLoss:
         assert loss.item() > 1.0  # random should have high loss
 
     def test_loss_is_scalar(self):
-        from finetune.train import compute_mnrl_loss
+        from suyven_rag.finetune.train import compute_mnrl_loss
 
         q = torch.randn(4, 32)
         p = torch.randn(4, 32)
@@ -329,7 +329,7 @@ class TestMNRLLoss:
         assert loss.dim() == 0  # scalar
 
     def test_loss_is_differentiable(self):
-        from finetune.train import compute_mnrl_loss
+        from suyven_rag.finetune.train import compute_mnrl_loss
 
         q = torch.randn(4, 32, requires_grad=True)
         p = torch.randn(4, 32, requires_grad=True)
@@ -346,7 +346,7 @@ class TestMNRLLoss:
 
 class TestDataset:
     def test_load_and_length(self, tmp_path):
-        from finetune.dataset import ContrastivePairsDataset
+        from suyven_rag.finetune.dataset import ContrastivePairsDataset
 
         data = tmp_path / "pairs.jsonl"
         data.write_text(
@@ -359,7 +359,7 @@ class TestDataset:
         assert ds[1] == ("q2", "p2")
 
     def test_train_eval_split(self, tmp_path):
-        from finetune.dataset import ContrastivePairsDataset, train_eval_split
+        from suyven_rag.finetune.dataset import ContrastivePairsDataset, train_eval_split
 
         data = tmp_path / "pairs.jsonl"
         lines = [f'{{"query":"q{i}","positive":"p{i}","source":"s","category":"c"}}\n' for i in range(100)]
@@ -375,7 +375,7 @@ class TestDataset:
         assert len(train_queries & eval_queries) == 0
 
     def test_max_samples(self, tmp_path):
-        from finetune.dataset import ContrastivePairsDataset
+        from suyven_rag.finetune.dataset import ContrastivePairsDataset
 
         data = tmp_path / "pairs.jsonl"
         lines = [f'{{"query":"q{i}","positive":"p{i}","source":"s","category":"c"}}\n' for i in range(50)]

@@ -169,8 +169,8 @@ class RetrievalQuality(EvalTask):
     ]
 
     def run(self) -> dict[str, Any]:
-        from rag.index_registry import get_index
-        from rag.model_registry import get_reranker
+        from suyven_rag.rag.index_registry import get_index
+        from suyven_rag.rag.model_registry import get_reranker
 
         collection = get_index()
         reranker = get_reranker()
@@ -242,7 +242,7 @@ class EmbeddingSpaceQuality(EvalTask):
 
     def run(self) -> dict[str, Any]:
         # Sample diverse texts from ChromaDB
-        from rag.index_registry import get_index
+        from suyven_rag.rag.index_registry import get_index
         col = get_index()
         result = col.get(limit=500, include=["documents", "metadatas"])
         texts = result["documents"]

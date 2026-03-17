@@ -83,7 +83,7 @@ class DomainFinetuneResult:
 
 def sample_domain_chunks(slug: str, max_chunks: int = 5000) -> list[dict]:
     """Load chunks from a domain's ChromaDB collection."""
-    from rag.index_registry import get_index
+    from suyven_rag.rag.index_registry import get_index
 
     index_name = f"domain_{slug}"
     col = get_index(index_name)
@@ -271,7 +271,7 @@ def _filter_with_reranker(
     batch_size: int = 64,
 ) -> list[dict]:
     """Score pairs with cross-encoder and filter low quality."""
-    from rag.model_registry import get_reranker
+    from suyven_rag.rag.model_registry import get_reranker
 
     reranker = get_reranker()
     logger.info("Filtering %d pairs with reranker (min_score=%.2f)...", len(pairs), min_score)
@@ -304,8 +304,8 @@ def train_domain_model(
     config: DomainFinetuneConfig,
 ) -> dict:
     """Train LoRA adapters on domain-specific pairs."""
-    from finetune.config import TrainConfig
-    from finetune.train import train
+    from suyven_rag.finetune.config import TrainConfig
+    from suyven_rag.finetune.train import train
 
     output_dir = DOMAIN_FT_DIR / slug / "checkpoints"
 
@@ -346,7 +346,7 @@ def register_domain_model(slug: str) -> Path:
 
     Returns the merged model path.
     """
-    from rag.model_registry import register_embed_model
+    from suyven_rag.rag.model_registry import register_embed_model
 
     merged_path = DOMAIN_FT_DIR / slug / "checkpoints" / "merged_model"
     if not merged_path.exists():
@@ -385,7 +385,7 @@ def run_domain_finetune(
 
     try:
         # Verify domain exists
-        from rag.domain_registry import get_domain
+        from suyven_rag.rag.domain_registry import get_domain
         domain = get_domain(slug)
         logger.info("[%s] Starting fine-tune pipeline for domain: %s", slug, domain.name)
 
@@ -444,7 +444,7 @@ def run_domain_finetune(
         result.status = "success"
 
         # Update domain config with model path
-        from rag.domain_registry import update_domain
+        from suyven_rag.rag.domain_registry import update_domain
         update_domain(slug, chunk_count=len(chunks))
 
         logger.info(

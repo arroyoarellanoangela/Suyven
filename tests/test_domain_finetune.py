@@ -6,7 +6,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from finetune.domain_finetune import (
+from suyven_rag.finetune.domain_finetune import (
     DomainFinetuneConfig,
     DomainFinetuneResult,
     _extract_first_sentence,
@@ -250,7 +250,7 @@ class TestDomainFinetuneResult:
 class TestRegisterDomainModel:
     @patch("rag.model_registry.register_embed_model")
     def test_registers_model(self, mock_register):
-        from finetune.domain_finetune import register_domain_model, DOMAIN_FT_DIR
+        from suyven_rag.finetune.domain_finetune import register_domain_model, DOMAIN_FT_DIR
 
         merged = DOMAIN_FT_DIR / "test" / "checkpoints" / "merged_model"
         merged.mkdir(parents=True, exist_ok=True)
@@ -267,7 +267,7 @@ class TestRegisterDomainModel:
             shutil.rmtree(DOMAIN_FT_DIR / "test", ignore_errors=True)
 
     def test_raises_on_missing_checkpoint(self):
-        from finetune.domain_finetune import register_domain_model
+        from suyven_rag.finetune.domain_finetune import register_domain_model
         with pytest.raises(FileNotFoundError):
             register_domain_model("nonexistent-domain-xyz")
 
@@ -285,7 +285,7 @@ class TestRunDomainFinetune:
     @patch("rag.domain_registry.get_domain")
     @patch("rag.domain_registry.update_domain")
     def test_success_path(self, mock_update, mock_get_domain, mock_sample, mock_filter, mock_train, mock_register):
-        from finetune.domain_finetune import run_domain_finetune, DOMAIN_FT_DIR
+        from suyven_rag.finetune.domain_finetune import run_domain_finetune, DOMAIN_FT_DIR
 
         mock_get_domain.return_value = MagicMock(name="Test Domain")
         mock_sample.return_value = _make_chunks(300)
@@ -313,7 +313,7 @@ class TestRunDomainFinetune:
     @patch("finetune.domain_finetune.sample_domain_chunks")
     @patch("rag.domain_registry.get_domain")
     def test_insufficient_data(self, mock_get_domain, mock_sample):
-        from finetune.domain_finetune import run_domain_finetune
+        from suyven_rag.finetune.domain_finetune import run_domain_finetune
 
         mock_get_domain.return_value = MagicMock(name="Test")
         mock_sample.return_value = _make_chunks(5)  # Too few chunks
@@ -327,7 +327,7 @@ class TestRunDomainFinetune:
 
     @patch("rag.domain_registry.get_domain")
     def test_domain_not_found(self, mock_get_domain):
-        from finetune.domain_finetune import run_domain_finetune
+        from suyven_rag.finetune.domain_finetune import run_domain_finetune
 
         mock_get_domain.side_effect = KeyError("not found")
 

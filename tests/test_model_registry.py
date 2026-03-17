@@ -2,7 +2,7 @@
 
 import pytest
 
-from rag.model_registry import ModelInfo, has_embed_model, list_models, register_embed_model, _registry
+from suyven_rag.rag.model_registry import ModelInfo, has_embed_model, list_models, register_embed_model, _registry
 
 
 class TestListModels:

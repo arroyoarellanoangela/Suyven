@@ -30,8 +30,8 @@ sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 import torch
 from sentence_transformers import CrossEncoder
 
-from rag.config import EMBED_MODEL, TOP_K
-from rag.store import get_collection
+from suyven_rag.rag.config import EMBED_MODEL, TOP_K
+from suyven_rag.rag.store import get_collection
 
 # ---------------------------------------------------------------------------
 # Ground truth — queries with expected relevant sources

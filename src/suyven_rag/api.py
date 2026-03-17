@@ -7,7 +7,7 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
 
-from rag.observability import (
+from suyven_rag.rag.observability import (
     RequestIdFilter,
     configure_logging,
     create_request_middleware,
@@ -25,7 +25,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse, StreamingResponse
 from pydantic import BaseModel
 
-from rag.security import (
+from suyven_rag.rag.security import (
     AUTH_ENABLED,
     CORS_ORIGINS,
     rate_limiter,
@@ -38,18 +38,18 @@ from rag.security import (
     validate_top_k,
 )
 
-from rag.agents import EvaluatorAgent, GeneratorAgent, ReACTRetrieverAgent, RetrieverAgent, RouterAgent, prepare_agent_context
-from rag.observability import get_request_id
-from rag.config import FALLBACK_MODEL, FALLBACK_PROVIDER, KNOWLEDGE_DIR, LLM_API_URL, LLM_MODEL, LLM_PROVIDER, OLLAMA_URL, WORKERS
-from rag.domain_registry import create_domain, delete_domain, get_domain, get_domain_prompt, list_domains, update_domain
-from rag.eval import new_query_id
-from rag.gap_tracker import analyze_gaps, load_query_log
-from rag.index_registry import get_index, register_index, reset_index
-from rag.loader import iter_files
-from rag.model_registry import get_embed_model, list_models
-from rag.monitoring import gpu_metrics
-from rag.pipeline import read_and_chunk
-from rag.store import add_chunks, ensure_ollama
+from suyven_rag.rag.agents import EvaluatorAgent, GeneratorAgent, ReACTRetrieverAgent, RetrieverAgent, RouterAgent, prepare_agent_context
+from suyven_rag.rag.observability import get_request_id
+from suyven_rag.rag.config import FALLBACK_MODEL, FALLBACK_PROVIDER, KNOWLEDGE_DIR, LLM_API_URL, LLM_MODEL, LLM_PROVIDER, OLLAMA_URL, WORKERS
+from suyven_rag.rag.domain_registry import create_domain, delete_domain, get_domain, get_domain_prompt, list_domains, update_domain
+from suyven_rag.rag.eval import new_query_id
+from suyven_rag.rag.gap_tracker import analyze_gaps, load_query_log
+from suyven_rag.rag.index_registry import get_index, register_index, reset_index
+from suyven_rag.rag.loader import iter_files
+from suyven_rag.rag.model_registry import get_embed_model, list_models
+from suyven_rag.rag.monitoring import gpu_metrics
+from suyven_rag.rag.pipeline import read_and_chunk
+from suyven_rag.rag.store import add_chunks, ensure_ollama
 
 # ---------------------------------------------------------------------------
 # App lifecycle
@@ -587,7 +587,7 @@ def query_domain(slug: str, body: QueryRequest, api_key: str = Depends(require_a
         yield f"data: {json.dumps({'type': 'sources', 'sources': sources, 'route': {'mode': mode, 'reason': reason}, 'domain': slug})}\n\n"
 
         # Override system prompt for this domain
-        from rag.llm import stream_chat
+        from suyven_rag.rag.llm import stream_chat
         import time
 
         t0 = time.time()
@@ -633,7 +633,7 @@ def finetune_domain(slug: str, body: DomainFinetuneRequest, api_key: str = Depen
     """
     import dataclasses
 
-    from finetune.domain_finetune import DomainFinetuneConfig, run_domain_finetune
+    from suyven_rag.finetune.domain_finetune import DomainFinetuneConfig, run_domain_finetune
 
     rate_limiter.check(api_key)
     slug = validate_slug(slug)

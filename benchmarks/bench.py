@@ -19,7 +19,7 @@ from statistics import mean as _mean
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-from rag.bench_metrics import (
+from suyven_rag.rag.bench_metrics import (
     binary_relevance,
     contamination_check,
     faithfulness_embedding,
@@ -29,7 +29,7 @@ from rag.bench_metrics import (
     precision_at_k,
     recall_at_k,
 )
-from rag.bench_types import (
+from suyven_rag.rag.bench_types import (
     BenchmarkReport,
     GenerationResult,
     GroundTruthEntry,
@@ -81,7 +81,7 @@ def _run_retrieval_direct(
     top_k_override: int | None = None,
     use_expansion: bool = False,
 ) -> list[RetrievalResult]:
-    from rag.orchestrator import execute_search, plan
+    from suyven_rag.rag.orchestrator import execute_search, plan
 
     results = []
     for i, gt in enumerate(entries, 1):
@@ -111,7 +111,7 @@ def _run_retrieval_agents(
     top_k_override: int | None = None,
     use_react: bool = False,
 ) -> list[RetrievalResult]:
-    from rag.agents import run_agent_pipeline
+    from suyven_rag.rag.agents import run_agent_pipeline
 
     results = []
     for i, gt in enumerate(entries, 1):
@@ -147,8 +147,8 @@ def run_generation(
     entries: list[GroundTruthEntry],
     retrieval: list[RetrievalResult],
 ) -> list[GenerationResult]:
-    from rag.llm import stream_chat
-    from rag.orchestrator import format_context
+    from suyven_rag.rag.llm import stream_chat
+    from suyven_rag.rag.orchestrator import format_context
 
     results = []
     for i, (gt, ret) in enumerate(zip(entries, retrieval), 1):
@@ -456,7 +456,7 @@ def compare_reports(path_a: Path, path_b: Path) -> None:
 
 
 def inspect_query(query: str, top_k: int = 10) -> None:
-    from rag.orchestrator import execute_search, plan
+    from suyven_rag.rag.orchestrator import execute_search, plan
 
     print(f"\n  Inspecting: \"{query}\"")
     print(f"  top_k: {top_k}")
@@ -538,7 +538,7 @@ def main():
 
         # Load embed model for faithfulness
         print("\n  Loading embed model for faithfulness scoring...")
-        from rag.model_registry import get_embed_model
+        from suyven_rag.rag.model_registry import get_embed_model
         model = get_embed_model("default_embed")
         embed_fn = lambda texts: model.encode(texts, convert_to_numpy=True).tolist()
     else:

@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pytest
 from fastapi import HTTPException
 
-from rag.security import (
+from suyven_rag.rag.security import (
     RateLimiter,
     require_api_key,
     sanitize_text,

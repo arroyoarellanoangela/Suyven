@@ -5,7 +5,7 @@ import logging
 
 import pytest
 
-from rag.observability import (
+from suyven_rag.rag.observability import (
     JSONFormatter,
     Metrics,
     RequestIdFilter,

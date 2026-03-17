@@ -18,15 +18,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Install Python deps first (layer caching)
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy app code
-COPY rag/ ./rag/
-COPY finetune/ ./finetune/
-COPY tests/ ./tests/
-COPY api.py app.py ingest.py bench.py pyproject.toml ./
+# Install Python deps (editable install from pyproject.toml)
+COPY pyproject.toml ./
+COPY src/ ./src/
+RUN pip install --no-cache-dir -e .
 
 # Copy built frontend into static serving dir
 COPY --from=frontend /app/frontend/dist ./static/
@@ -44,4 +39,4 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD python -c "import requests; r=requests.get('http://localhost:8000/api/health',timeout=3); assert r.status_code==200"
 
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "suyven_rag.api:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -21,9 +21,9 @@ from pathlib import Path
 import torch
 from sentence_transformers import SentenceTransformer
 
-from rag.config import CHUNK_SIZE, CHUNK_OVERLAP, EMBED_MODEL, KNOWLEDGE_DIR
-from rag.chunker import chunk_text
-from rag.loader import iter_files, read_file
+from suyven_rag.rag.config import CHUNK_SIZE, CHUNK_OVERLAP, EMBED_MODEL, KNOWLEDGE_DIR
+from suyven_rag.rag.chunker import chunk_text
+from suyven_rag.rag.loader import iter_files, read_file
 
 
 # ---------------------------------------------------------------------------

@@ -19,7 +19,7 @@ logging.basicConfig(
     stream=sys.stdout,
 )
 
-from rag.orchestrator import plan
+from suyven_rag.rag.orchestrator import plan
 
 # ---------------------------------------------------------------------------
 # Test queries grouped by expected mode

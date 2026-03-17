@@ -271,7 +271,7 @@ Start with any needed imports, then the new functions."""
     ]
 
     def __init__(self, preferred_backend: str | None = None):
-        from rag.config import LLM_API_KEY, LLM_API_URL, LLM_MODEL
+        from .config import LLM_API_KEY, LLM_API_URL, LLM_MODEL
 
         gemini_key = os.environ.get("GEMINI_API_KEY", "")
 

@@ -2,7 +2,7 @@
 
 import pytest
 
-from rag.orchestrator import RoutePlan, plan
+from suyven_rag.rag.orchestrator import RoutePlan, plan
 
 
 # ---------------------------------------------------------------------------
