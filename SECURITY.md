@@ -1,8 +1,8 @@
-# Security Policy
+# Security Policy — Henko
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability, please report it responsibly.
+If you discover a security vulnerability in Henko, please report it responsibly.
 
 **Email:** [angela@suyven.com](mailto:angela@suyven.com)
 
@@ -10,6 +10,7 @@ Please include:
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact
+- Affected component (API, ingestion pipeline, vector store, authentication, etc.)
 
 We will acknowledge receipt within 48 hours and provide a detailed response within 5 business days.
 
@@ -18,6 +19,20 @@ We will acknowledge receipt within 48 hours and provide a detailed response with
 | Version | Supported |
 |---------|-----------|
 | latest  | Yes       |
+
+## Scope
+
+The following components are in scope for security reports:
+
+- FastAPI endpoints (`/query`, `/ingest`, `/metrics`, `/health`)
+- Authentication and API key handling
+- Input validation and query sanitization
+- Docker container configuration
+- Dependency vulnerabilities
+
+Out of scope:
+- Third-party LLM provider APIs (Groq, Gemini)
+- ChromaDB upstream vulnerabilities (report those upstream)
 
 ## Disclosure Policy
 

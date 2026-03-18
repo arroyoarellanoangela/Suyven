@@ -1,6 +1,6 @@
 <div align="center">
 
-# Suyven RAG Engine
+# Henko
 
 **The knowledge base that adapts to anything.**
 
@@ -20,7 +20,7 @@
 
 Most RAG engines are built to impress in demos. This one is built to run in production.
 
-**Suyven RAG Engine** is the core infrastructure powering every Suyven product. It's GPU-first, domain-agnostic, and designed so that anyone — a startup, an enterprise, a solo dev — can plug in their knowledge and get a system that actually works. One engine. Unlimited domains. Zero compromise.
+**Henko** is the core retrieval engine powering every Suyven product. It's GPU-first, domain-agnostic, and designed so that anyone — a startup, an enterprise, a solo dev — can plug in their knowledge and get a system that actually works. One engine. Unlimited domains. Zero compromise.
 
 It's fast because it has to be. It's precise because anything less is useless. And it's modular because the future will require things we haven't thought of yet.
 
@@ -32,7 +32,7 @@ It's fast because it has to be. It's precise because anything less is useless. A
 
 Knowledge is scattered. Teams drown in documents, wikis, PDFs, codebases. LLMs hallucinate. Semantic search alone isn't enough.
 
-Suyven RAG Engine exists because **retrieval is the hardest part**, and most solutions skip the hard work. We didn't.
+Henko exists because **retrieval is the hardest part**, and most solutions skip the hard work. We didn't.
 
 - GPU-accelerated embeddings at 38x CPU speed
 - Hybrid search combining semantic understanding with keyword precision
@@ -75,7 +75,7 @@ Suyven RAG Engine exists because **retrieval is the hardest part**, and most sol
 ## Architecture
 
 ```
-suyven-rag/
+henko/
 ├── api.py                    # FastAPI + SSE streaming
 ├── app.py                    # Streamlit UI + GPU dashboard
 ├── ingest.py                 # CLI ingestion (3-phase pipeline)
@@ -286,7 +286,7 @@ stream_chat(query, context, system_prompt, ...) → Generator[str]
 
 <div align="center">
 
-**Built by [Suyven](https://suyven.com)**
+**Henko is built by [Suyven](https://suyven.com)**
 
 *The base layer. Everything else is built on top of this.*
 
